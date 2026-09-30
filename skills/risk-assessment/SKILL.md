@@ -1,16 +1,30 @@
-# Risk Assessment Skill
+---
+name: risk-assessment
+description: Identify rule-based student performance risk indicators from supplied assessment results and configured thresholds.
+---
+
+# Risk Assessment
 
 ## Purpose
-Identify a transparent, rule-based indicator when overall performance is below a configured threshold.
+
+This skill identifies a performance risk indicator from validated student assessment results using deterministic threshold rules.
 
 ## Inputs
-The skill consumes validated assessment records and runtime thresholds supplied through environment variables.
+
+The skill receives validated assessment records and the configured student performance risk threshold. The threshold is supplied through runtime configuration.
 
 ## Behavior
-It first calculates the overall percentage, then compares it with `STUDENT_PERFORMANCE_RISK_THRESHOLD`. No causal or predictive conclusion is produced.
+
+The skill calculates the overall performance percentage using the same validated calculation logic as the performance analysis path. It compares that percentage against the configured threshold and reports the rule used.
 
 ## Outputs
-The output contains a boolean flag, the applied rule name, the configured threshold, and an explanation tied to that comparison.
+
+The skill returns a structured risk indicator, the calculated performance percentage, the threshold used, and an explanation of the deterministic comparison.
 
 ## Invalid Inputs
-Invalid assessment records or missing/invalid runtime configuration produce structured errors rather than substituted values.
+
+Invalid assessment records are rejected before risk evaluation. Missing required runtime configuration is reported as a configuration error rather than silently replaced with an invented production value.
+
+## Limitations
+
+A risk indicator is not a diagnosis or prediction. The skill only evaluates the supplied numerical assessment data against the configured deterministic threshold.

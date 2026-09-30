@@ -1,16 +1,30 @@
-# Performance Analysis Skill
+---
+name: performance-analysis
+description: Analyze supplied student assessment records using deterministic performance calculations and report transparent results.
+---
+
+# Performance Analysis
 
 ## Purpose
-Calculate transparent aggregate and per-assessment performance metrics from structured scores.
+
+This skill analyzes structured student assessment records and calculates performance metrics without inventing missing data.
 
 ## Inputs
-A non-empty `assessments` list is required. Each assessment contains a numeric `score` and positive numeric `max_score`, with an optional name.
+
+Each assessment must contain a numeric `score` and a positive numeric `max_score`. Scores must be between zero and the supplied maximum.
 
 ## Behavior
-The skill validates every record and calculates `100 * sum(score) / sum(max_score)`. It also calculates a percentage for each assessment independently.
+
+The skill validates the assessment records before calculation. Overall performance is calculated from the supplied scores and maximum scores, and assessment-level percentages are reported.
 
 ## Outputs
-The result contains total score, total maximum score, overall percentage, and per-assessment percentages.
+
+The skill returns structured performance metrics including total score, total maximum score, overall percentage, and assessment-level percentages.
 
 ## Invalid Inputs
-Missing fields, non-numeric values, negative scores, scores above the maximum, non-positive maximums, and empty lists are rejected.
+
+Malformed assessments, missing required fields, invalid numeric values, impossible score ranges, and empty assessment lists are rejected with structured errors.
+
+## Limitations
+
+The skill only analyzes caller-provided numerical assessment data. It does not infer causes of performance or predict future academic outcomes.
