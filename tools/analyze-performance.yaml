@@ -1,0 +1,21 @@
+name: analyze-performance
+description: Calculate performance metrics and assign a configured performance band.
+input_schema:
+  type: object
+  required: [assessments]
+  properties:
+    assessments:
+      type: array
+      minItems: 1
+      items:
+        type: object
+        required: [score, max_score]
+        properties:
+          name: {type: string}
+          score: {type: number, minimum: 0}
+          max_score: {type: number, exclusiveMinimum: 0}
+        additionalProperties: false
+  additionalProperties: false
+output_schema:
+  type: object
+  required: [ok, data]

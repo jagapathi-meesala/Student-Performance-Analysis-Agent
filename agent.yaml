@@ -1,0 +1,11 @@
+spec_version: "0.1.0"
+name: student-performance-analysis-agent
+version: 1.0.0
+description: Deterministic student performance analysis agent using validated academic metrics and transparent rules.
+skills:
+  - performance-analysis
+  - risk-assessment
+tools:
+  - calculate-performance
+  - analyze-performance
+  - identify-risk
